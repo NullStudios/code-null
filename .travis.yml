@@ -1,0 +1,12 @@
+sudo: required
+
+services:
+  - docker
+
+script:
+  - REBLOG="docker run -v $(pwd):/context -u `id -u $USER`:`id -g $USER` natewilkins/reblog"
+  - make all
+
+notifications:
+  slack:
+    secure: cxehjI5Tt3LsJJEnWcDpsnbuXAszykGPG5qAYm9xWi5Y1LmO5NHez0u6MT+YK6cm7s+O2Yy4RMbA7qHY5HibfNPnsYlfVf6Xlbz3KJmikYmZtOK2DCOUYMUzEOXdtmonQoo5vgBPd41+/4159dS61IQ0irqpzlomL9SoKNkvQNJHtu/n4ycfWvnNEirKOfTHamdgyG633dwzZMxmqjsb5lltyvD+jOeqj5e/wzaZqIwGkelwwDF044i12w8vd+YMT08skq7rBABiv44v5Ah/hf92Jr2GG8AUMGS8lZMuskjNXx3+67Hty2v3WVcAekvmUUl7Qw5LawspJUBToFDabBmDRjxU4TTCQCuQGy+SAQLQlKYq+w59s4zqDyd4cFZTIqFcYoZ7jyEyDxMv7RRrbmLJxBB6JwlTv7kvb9EumA+IqJ71cK2RCKFgadszEW7ORpMLeI/SvvPibK0bRwF+xWPuUEN1RXec0dkjyN0hxWI4ev0OzILLL0ML4JmepYbUk705Krn1gnsfBfb5YVu1HHxZnHn+BB1RgMPuzlxoPvTl4HT0mNfrYycdEOirnJHQe5X9QHGszDNVtckZ1Rk+TqgwSxqLPHGKCMAue7Vilh0P+Jq2m9Ep3rGppnVJYXzPyJeHnNlR15RWLEXIf+DRhuXk8frCdkZlK+fojvmQumE=

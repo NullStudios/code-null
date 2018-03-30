@@ -1,0 +1,48 @@
+<div>
+  <!-- [[ SEE .pagination.eex  ]] -->
+  <!-- TODO: provide ld+json helpers for eex templates. -->
+  <!-- TODO: discussionUrl, timeRequired (reading_time), version, image (first by default) -->
+  <!-- TODO: include directly in engine. -->
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org/",
+      "@type": "Blog",
+	    "schemaVersion": "http://schema.org/version/3.3",
+      "url": "<%= @url %>",
+      "blogPost": {
+          "@type": "BlogPosting",
+	        "schemaVersion": "http://schema.org/version/3.3",
+          "url": "<%= @url %>",
+          <% if assigns[:image] do %>
+          "image": "<%= @image %>,
+          <% end %>
+	        "articleBody": <%= JSX.encode!(@content) %>,
+	        "articleSection": <%= JSX.encode!(@excerpt) %>,
+	        "wordCount": "<%= @word_count %>",
+	        "copyrightYear": "<%= @copyright_year %>",
+	        "datePublished": "<%= Timex.format!(@date, "{ISO:Extended}") %>",
+	        "headline": "<%= @title %>",
+          <% if assigns[:keywords] do %>
+	        "keywords": "<%= @keywords %>",
+          <% end %>
+	        "description": <%= JSX.encode!(@excerpt) %>,
+	        "name": "<%= @title %>"
+      }
+    }
+  </script>
+
+  <h1 class="title is-2"><%= @title %></h1>
+
+  <div class="subtitle">
+    <i class="fas fa-calendar-alt"></i>
+    <time class="time" datetime="<%= Timex.format!(@date, "{ISO:Extended}") %>"></time> | <%= @author %>
+    <p class="subtitle is-6">
+      <span>Posted </span>
+      <time class="time-ago" datetime="<%= Timex.format!(@date, "{ISO:Extended}") %>"></time>
+    </p>
+  </div>
+
+  <div class="content">
+    <%= @content %>
+  </div>
+</div>

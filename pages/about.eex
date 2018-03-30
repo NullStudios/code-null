@@ -1,0 +1,59 @@
+<div>
+  <h2 class="title is-2">What is CodeNull?</h2>
+  <div class="content">
+    <p>
+      A code-for-nothing site dedicated to software development, hacking, how-to's,
+      and all around cool stuff.
+    </p>
+
+    <p>
+      Also known as <code>Nate's Cool Blog</code>.
+    </p>
+  </div>
+
+  <h2 class="title is-2">About Me</h2>
+
+  <div class="columns is-mobile">
+    <div class="column is-three-quarters content">
+      <p>
+        My name is <code>nate-wilkins</code> and my call sign is <code>\n</code>.
+        Yes, the dash is very important.
+      </p>
+
+      <p>
+        I'm a software engineering professional who is passionate about technology
+        and it's impact on the end user. Experienced with comprehensive skills
+        in the design, development, test, and maintenance of large scale
+        software systems.
+      </p>
+
+      <p>
+        Hard worker who loves to learn and provide technical leadership through
+        guidance and real-world examples. Motivated by the curiosity of how
+        things work and their uniqueness to inspire!
+      </p>
+
+      <ul>
+        <li><b>Specialties:</b> OO-Modeling & Design, Agile, C#, JavaScript</li>
+        <li><b>Industries:</b> Healthcare, Insurance, Medical and Imaging IT</li>
+        <li><b>Interests:</b> Containerization, Computer Vision, Photogrammetry, and Machine Learning</li>
+        <li><b>Hobbies:</b> Skiing, Photography, Virtual Reality</li>
+      </ul>
+
+      <p>
+        If you need to get ahold of me you can find me on twitter as <a href="https://twitter.com/_natewilkins">@_natewilkins</a>
+        or shoot me an email here on code-null.
+      </p>
+
+      <p>
+        My gpg key can be found <a href="<%= @host %>/assets/nate-wilkins_pubkey.asc.txt">here</a>.
+      </p>
+    </div>
+    <div class="column">
+      <img class="avatar" src="http://www.gravatar.com/avatar/2cbf71e20364210d59058430367cd899?s=250" />
+    </div>
+  </div>
+
+  <h2 class="title is-2">Resume</h2>
+  <embed src="<%= @host %>/assets/resume.pdf" width="100%" height="750">
+</div>

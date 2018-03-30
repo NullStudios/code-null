@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= @title %></title>
+
+    <!-- Required Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Content Tags -->
+    <meta name="keywords" content="<% if assigns[:keywords] do %><%= Enum.each(@keywords, fn(keyword) -> keyword end) %><% end %>">
+
+    <% if assigns[:description] do %>
+      <meta name="description" content="<%= @description %>">
+      <meta name="subject" content="<%= @description %>">
+    <% else %>
+      <meta name="description" content="Reblog generated blog.">
+      <meta name="subject" content="Reblog generated blog.">
+    <% end %>
+
+    <meta name="language" content="en">
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="google" content="nositelinkssearchbox">
+    <meta name="revised" content="<%= @generated_time %>">
+    <meta name="abstract" content="">
+    <meta name="topic" content="">
+    <meta name="summary" content="">
+    <meta name="author" content="">
+    <meta name="referrer" content="never">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Cache Control Tags -->
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+
+    <% if assigns[:canonical_url] do %>
+      <link rel="canonical" href="<%= @canonical_url %>">
+    <% end %>
+
+    <link rel="shortcut icon" href="assets/favicon.svg">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+    <style>
+      body, html {
+        font-size: 14px;
+        height: 100%;
+        min-height: 100%;
+        background-color: #f5f5f5;
+      }
+
+      .content-wrapper {
+        min-height: 50vh;
+      }
+
+      .navbar {
+        display: flex;
+        font-size: 1.5em;
+        background-color: #032235;
+        flex-wrap: nowrap;
+      }
+
+      .navbar .container {
+        display: flex;
+      }
+
+      .navbar-menu, .navbar-menu.is-active{
+        display: flex;
+        align-items: stretch;
+        flex-grow: 1;
+        flex-shrink: 0;
+        margin-left: 0;
+        -webkit-box-align: stretch;
+        -webkit-box-flex: 1;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: inherit;
+      }
+
+      .navbar-end {
+        display: flex;
+        margin-left: auto;
+        -webkit-box-pack: end;
+        align-items: center;
+        padding-right: 1em;
+      }
+
+      .navbar-item {
+        padding-right: 8px;
+        padding-left: 8px;
+      }
+
+      .navbar a {
+        color: #f5f5f5;
+      }
+
+      .navbar a:hover {
+        color: #7291A3;
+      }
+
+      .navbar a.logo {
+        user-select: none;
+      }
+
+      .navbar a.logo:hover {
+        background-color: inherit;
+      }
+
+      .footer {
+        background-color: #f5f5f5;
+      }
+
+      .animated {
+        animation-duration: .50s;
+        animation-fill-mode: both;
+      }
+
+      .page-delay {
+        animation-delay: .20s;
+      }
+
+      .logo {
+        fill: #fff;
+        animation-name: fadeIn;
+      }
+
+      .logo svg {
+        width: 180px;
+        height: auto;
+      }
+
+      .avatar {
+        border-radius: 25px;
+        width: 25vw;
+        box-shadow: 7px 7px 10px 0px rgba(0,0,0,0.75);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header id="header">
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
+          <div class="navbar-brand">
+            <div class="navbar-item">
+              <a href="/index.html" class=" logo">
+                <!-- Dynamic SVG insert -->
+              </a>
+            </div>
+          </div>
+
+          <div class="navbar-menu is-active">
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <span class="icon">
+                  <a href="https://github.com/Nate-Wilkins">
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                  </a>
+                </span>
+              </div>
+
+              <div class="navbar-item">
+                <span class="icon">
+                  <a href="https://twitter.com/_natewilkins">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                  </a>
+                </span>
+              </div>
+
+              <div class="navbar-item">
+                <span class="icon">
+                  <a href="/index.xml">
+                    <i class="fas fa-rss" aria-hidden="true"></i>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section id="content" class="section content-wrapper">
+      <div class="container">
+        <%= @content %>
+      </div>
+    </section>
+
+    <footer id="footer" class="footer">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <p>
+              <span>Copyright &copy; 2018 <%= @name %>
+
+              Built using
+              <a href="https://github.com/Nate-Wilkins/reblog">Reblog</a>
+              on
+              <time class="time" data-time-format="MMMM, D YYYY" datetime="<%= Timex.format!(@generated_time, "{ISO:Extended}") %>"></time>
+            </p>
+          </div>
+        </div>
+
+        <div class="level-right">
+          <a class="level-item" href="/about/index.html">About</a>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+
+    <!-- Highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.4.0/languages/go.min.js"></script>
+    <script type="text/javascript">
+      hljs.initHighlightingOnLoad();
+    </script>
+
+    <!-- Snap.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
+    <script type="text/javascript">
+      Snap.load("/assets/logo.svg", (fragment) => {
+        document.querySelector('.logo').append(fragment.node);
+      });
+    </script>
+
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.js"></script>
+    <script type="text/javascript">
+      document.querySelectorAll('.time').forEach((element) => {
+        timeData = element.dateTime;
+        timeFormat = element.dataset.timeFormat || "ddd MMM Do YYYY";
+        element.innerHTML = moment(timeData).format(timeFormat);
+      });
+
+      document.querySelectorAll('.time-ago').forEach((element) => {
+        timeData = element.dateTime;
+        element.innerHTML = moment(timeData).fromNow()
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!-- TODO: provide ld+json helpers for eex templates. -->
+<!-- TODO: discussionUrl, timeRequired (reading_time), version, image (first by default) -->
+<!-- TODO: include directly in engine. -->
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Blog",
+	  "schemaVersion": "http://schema.org/version/3.3",
+    //"url": " current_page_path ",
+    "blogPosts": [
+      <%= Enum.map(@pagination_posts, fn(post) -> %>
+      {
+        "@type": "BlogPosting",
+	      "schemaVersion": "http://schema.org/version/3.3",
+        "url": "<%= post.url %>",
+        <% if Map.has_key?(post, :image) do %>
+        "image": "<%= post.image %>,
+        <% end %>
+	      "articleBody": <%= JSX.encode!(post.content) %>,
+	      "articleSection": <%= JSX.encode!(post.excerpt) %>,
+	      "wordCount": "<%= post.word_count %>",
+	      "copyrightYear": "<%= post.copyright_year %>",
+	      "datePublished": "<%= Timex.format!(post.date, "{ISO:Extended}") %>",
+	      "headline": "<%= post.title %>",
+        <% if Map.has_key?(post, :keywords) do %>
+	      "keywords": "<%= post.keywords %>",
+        <% end %>
+	      "description": <%= JSX.encode!(post.excerpt) %>,
+	      "name": "<%= post.title %>"
+      },
+      <% end) %>
+    ]
+  }
+</script>
+
+
+<!-- Page Posts -->
+<%= Enum.map(@pagination_posts, fn(post) -> %>
+<div>
+  <h1 class="title is-2"><a href="<%= post.url %>"><%= post.title %></a></h1>
+
+  <div class="subtitle">
+    <i class="fas fa-calendar-alt"></i>
+    <time class="time" datetime="<%= Timex.format!(post.date, "{ISO:Extended}") %>"></time> | <%= post.author %>
+    <p class="subtitle is-6">
+      <span>Posted </span>
+      <time class="time-ago" datetime="<%= Timex.format!(post.date, "{ISO:Extended}") %>"></time>
+    </p>
+  </div>
+
+  <div class="content">
+    <%= post.excerpt %>
+  </div>
+</div>
+<% end) %>
+
+<!-- Pagination Links -->
+<nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
+  <% if assigns[:previous_page_number] do %>
+  <a rel="prev" class="pagination-previous" href="<%= @previous_page_path %>">Previous</a>
+  <% else %>
+  <a class="pagination-previous">Previous</a>
+  <% end %>
+
+  <% if assigns[:next_page_number] do %>
+  <a rel="next" class="pagination-next" href="<%= @next_page_path %>">Next</a>
+  <% else %>
+  <a class="pagination-next">Next</a>
+  <% end %>
+
+  <ul class="pagination-list">
+    <li><a class="pagination-link" aria-label="Goto page <%= @first_page %>"><%= @first_page %></a></li>
+
+    <% if assigns[:first_page] != assigns[:last_page] do %>
+    <li><span class="pagination-ellipsis">&hellip;</span></li>
+    <% end %>
+
+    <!-- Page Prior -->
+    <% if assigns[:current_page] - 1 > assigns[:first_page] && assigns[:current_page] - 1 < assigns[:last_page] do %>
+    <li><a class="pagination-link" aria-label="Goto page <%= @current_page - 1 %>"><%= @current_page - 1 %></a></li>
+    <% end %>
+
+    <% if assigns[:current_page] > assigns[:current_page] && assigns[:current_page] < assigns[:current_page] do %>
+    <li><a class="pagination-link is-current" aria-label="Page <%= @current_page %>" aria-current="page"><%= @current_page %></a></li>
+    <% end %>
+
+    <!-- Page After -->
+    <% if assigns[:current_page] + 1 > assigns[:first_page] && assigns[:current_page] + 1 < assigns[:last_page] do %>
+    <li><a class="pagination-link" aria-label="Goto page <%= @current_page + 1 %>"><%= @current_page + 1 %></a></li>
+    <% end %>
+
+    <% if assigns[:first_page] != assigns[:last_page] do %>
+    <li><span class="pagination-ellipsis">&hellip;</span></li>
+    <% end %>
+
+    <% if assigns[:first_page] != assigns[:last_page] do %>
+    <li><a class="pagination-link" aria-label="Goto page <%= @last_page %>"><%= @last_page %></a></li>
+    <% end %>
+  </ul>
+</nav>

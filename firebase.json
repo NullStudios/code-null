@@ -1,0 +1,15 @@
+{
+  "hosting": {
+    "public": "_site",
+    "redirects": [{
+      "source": "/_business-card",
+      "destination": "/about/index.html",
+      "type": 302
+    }],
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
