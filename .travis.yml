@@ -8,8 +8,7 @@ before_install:
   - sudo apt-get install -y jq
 
 script:
-  - REBLOG="docker run -v $(pwd):/context -u `id -u $USER`:`id -g $USER` natewilkins/reblog"
-  - make all
+  - make all REBLOG="docker run -v $(pwd):/context -u `id -u $USER`:`id -g $USER` natewilkins/reblog"
 
 notifications:
   slack:
