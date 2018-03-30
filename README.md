@@ -1,9 +1,9 @@
 <a href="http://code-null.com/">
-  <img alt="codenull" src="https://rawgit.com/NullStudios/code-null/develop/assets/logo.svg" width="275">
+  <img alt="codenull" src="https://rawgit.com/NullStudios/code-null/master/assets/logo.svg" width="275">
 </a>
 
 <a href="http://code-null.com/">
-  <img alt="codenull" src="https://rawgit.com/NullStudios/code-null/develop/assets/favicon.svg" width="25">
+  <img alt="codenull" src="https://rawgit.com/NullStudios/code-null/master/assets/favicon.svg" width="25">
 </a>
 
 [![tag](https://img.shields.io/github/tag/NullStudios/code-null.svg?maxAge=2592000?style=flat-square)](http://github.com/NullStudios/code-null)
