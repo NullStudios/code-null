@@ -6,7 +6,7 @@ clean:
 	git clean -X -q -f
 
 RESUME_PDF_URL := $(shell curl -s \
-https://api.github.com/repos/Nate-Wilkins/about/releases/latest | jq \
+'https://api.github.com/repos/Nate-Wilkins/about/releases/latest' | jq \
 --raw-output -c '.assets[] | .browser_download_url | select(contains("nate-wilkins_resume.pdf"))')
 
 resume:
