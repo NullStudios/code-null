@@ -1,3 +1,6 @@
+language: node_js
+node_js: 9.8.0
+
 sudo: required
 
 services:
@@ -6,6 +9,7 @@ services:
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y jq
+  - npm install firebase-tools --global
 
 script:
   - make all REBLOG=docker\ run\ -v\ $(pwd):/context\ -u\ `id -u $USER`:`id -g $USER`\ natewilkins/reblog
