@@ -1,4 +1,4 @@
-REBLOG := "reblog"
+REBLOG ?= "reblog"
 
 all: clean build deploy
 
