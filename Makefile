@@ -15,7 +15,9 @@ build:
 	$(REBLOG) build --host "https://code-null.com"
 
 deploy:
-	$(REBLOG) deploy --provider firebase --arg token=$(FIREBASE_TOKEN)
+	firebase deploy --token $(FIREBASE_TOKEN)
+# TODO: provider not picking up firebase.
+# $(REBLOG) deploy --provider firebase --arg token=$(FIREBASE_TOKEN)
 
 help:
 	@echo 'Makefile build automation                    '
