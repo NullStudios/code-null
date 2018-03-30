@@ -3,6 +3,10 @@ sudo: required
 services:
   - docker
 
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install -y jq
+
 script:
   - REBLOG="docker run -v $(pwd):/context -u `id -u $USER`:`id -g $USER` natewilkins/reblog"
   - make all
